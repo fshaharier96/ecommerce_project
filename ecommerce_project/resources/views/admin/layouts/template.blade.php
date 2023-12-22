@@ -15,7 +15,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>@yield('title')</title>
 
     <meta name="description" content="" />
 
@@ -76,7 +76,7 @@
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
                 <li class="menu-item active">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('admindashboard')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
@@ -88,13 +88,13 @@
                     <span class="menu-header-text">Category</span>
                 </li>
                 <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('addcategory')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Add Category</div>
                     </a>
                 </li>
                 <li class="menu-item ">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('allcategory')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">All Category</div>
                     </a>
@@ -109,13 +109,13 @@
                     <span class="menu-header-text"> Sub Category</span>
                 </li>
                 <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('addsubcategory')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Add Subcategory</div>
                     </a>
                 </li>
                 <li class="menu-item ">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('allsubcategory')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">All Subcategory</div>
                     </a>
@@ -131,13 +131,13 @@
                     <span class="menu-header-text"> Product</span>
                 </li>
                 <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('addproduct')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Add Product</div>
                     </a>
                 </li>
                 <li class="menu-item ">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('allproduct')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">All Product</div>
                     </a>
@@ -152,7 +152,7 @@
                     <span class="menu-header-text">Orders</span>
                 </li>
                 <li class="menu-item">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{route('pendingorders')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Pending Orders</div>
                     </a>
@@ -181,17 +181,17 @@
                 <li class="menu-item">
                     <a href="javascript:void(0)" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-box"></i>
-                        <div data-i18n="User interface">User interface</div>
+                        <div data-i18n="User interface">Others</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
                             <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Accordion</div>
+                                <div data-i18n="Accordion">Help</div>
                             </a>
                         </li>
                         <li class="menu-item">
                             <a href="ui-alerts.html" class="menu-link">
-                                <div data-i18n="Alerts">Alerts</div>
+                                <div data-i18n="Alerts">documentation</div>
                             </a>
                         </li>
 
@@ -200,101 +200,7 @@
                     </ul>
                 </li>
 
-                <!-- Extended components -->
-                <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-copy"></i>
-                        <div data-i18n="Extended UI">Extended UI</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-                                <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="extended-ui-text-divider.html" class="menu-link">
-                                <div data-i18n="Text Divider">Text Divider</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="menu-item">
-                    <a href="icons-boxicons.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-crown"></i>
-                        <div data-i18n="Boxicons">Boxicons</div>
-                    </a>
-                </li>
-
-                <!-- Forms & Tables -->
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
-                <!-- Forms -->
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-detail"></i>
-                        <div data-i18n="Form Elements">Form Elements</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="forms-basic-inputs.html" class="menu-link">
-                                <div data-i18n="Basic Inputs">Basic Inputs</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="forms-input-groups.html" class="menu-link">
-                                <div data-i18n="Input groups">Input groups</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-detail"></i>
-                        <div data-i18n="Form Layouts">Form Layouts</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
-                                <div data-i18n="Vertical Form">Vertical Form</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="form-layouts-horizontal.html" class="menu-link">
-                                <div data-i18n="Horizontal Form">Horizontal Form</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Tables -->
-                <li class="menu-item">
-                    <a href="tables-basic.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-table"></i>
-                        <div data-i18n="Tables">Tables</div>
-                    </a>
-                </li>
-                <!-- Misc -->
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-                <li class="menu-item">
-                    <a
-                        href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                        target="_blank"
-                        class="menu-link"
-                    >
-                        <i class="menu-icon tf-icons bx bx-support"></i>
-                        <div data-i18n="Support">Support</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a
-                        href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                        target="_blank"
-                        class="menu-link"
-                    >
-                        <i class="menu-icon tf-icons bx bx-file"></i>
-                        <div data-i18n="Documentation">Documentation</div>
-                    </a>
-                </li>
             </ul>
         </aside>
         <!-- / Menu -->

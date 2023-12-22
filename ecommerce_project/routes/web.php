@@ -28,12 +28,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/userprofile', [\App\Http\Controllers\Admin\DashboardController::class,'index']);
 
 Route::middleware(['auth','role:admin'])->group(function(){
        Route::controller(\App\Http\Controllers\Admin\DashboardController::class)->group(function(){
-           Route::get('/admin/dashboard','index');
+           Route::get('/admin/dashboard','index')->name('admindashboard');
        });
+
+       Route::controller(\App\Http\Controllers\Admin\CategoryController::class)->group(function(){
+           Route::get('/admin/all-category','index')->name('allcategory');
+           Route::get('/admin/add-category','addCategory')->name('addcategory');
+       });
+    Route::controller(\App\Http\Controllers\Admin\SubCategoryController::class)->group(function(){
+        Route::get('/admin/all-subcategory','index')->name('allsubcategory');
+        Route::get('/admin/add-subcategory','addSubCategory')->name('addsubcategory');
+    });
+
+    Route::controller(\App\Http\Controllers\Admin\ProductController::class)->group(function(){
+        Route::get('/admin/all-product','index')->name('allproduct');
+        Route::get('/admin/add-product','addProduct')->name('addproduct');
+    });
+
+    Route::controller(\App\Http\Controllers\Admin\OrderController::class)->group(function(){
+        Route::get('/admin/pending-orders','index')->name('pendingorders');
+
+    });
 });
 
 require __DIR__.'/auth.php';
