@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Illuminate\Database\Console\Migrations\ResetCommand;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -33,5 +34,19 @@ class SubCategoryController extends Controller
         Category::where('id',$category_id)->increment('subcategory_count',1);
         return redirect()->route('allsubcategory')->with('message','Sub Category added successfully');
     }
-
+    public function editSubCategory($id){
+        $subcategory=Subcategory::findOrFail($id);
+        return view('admin.editsubcategory',compact('subcategory'));
+    }
+   public function updateSubCategory(Request $request){
+       $request->validate([
+           'subcategory_name'=>'required|unique:subcategories',
+       ]);
+       $subcategory_id=$request->subcategory_id;
+       Subcategory::findOrFail($subcategory_id)->update([
+           "subcategory_name"=>$request->subcategory_name,
+           "slug"=>strtolower(str_replace(' ','-',$request->subcategory_name)),
+       ]);
+       return redirect()->route('allsubcategory')->with('message','Sub Category updated successfully');
+   }
 }
