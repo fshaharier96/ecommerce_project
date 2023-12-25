@@ -27,7 +27,7 @@
                         <td>{{$subcategory->id}}</td>
                         <td>{{$subcategory->subcategory_name}}</td>
                         <td>{{$subcategory->category_name}}</td>
-                        <td></td>
+                        <td>{{$subcategory->product_count}}</td>
                         <td>
                             <a  class="btn  btn-primary" href="">Edit</a>
                             <a  class="btn btn-danger" href="">Delete</a>
