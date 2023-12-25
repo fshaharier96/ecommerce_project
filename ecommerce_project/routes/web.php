@@ -44,6 +44,7 @@ Route::middleware(['auth','verified','role:admin'])->group(function(){
        Route::controller(\App\Http\Controllers\Admin\CategoryController::class)->group(function(){
            Route::get('/admin/all-category','index')->name('allcategory');
            Route::get('/admin/add-category','addCategory')->name('addcategory');
+           Route::post('/admin/store-category','storeCategory')->name('storecategory');
        });
     Route::controller(\App\Http\Controllers\Admin\SubCategoryController::class)->group(function(){
         Route::get('/admin/all-subcategory','index')->name('allsubcategory');
