@@ -10,7 +10,18 @@
                     <small class="text-muted float-end">input information</small>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{route('storesubcategory')}}" method="POST">
+                        @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Sub Category Name</label>
                             <div class="col-sm-10">
@@ -21,17 +32,17 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Select Category</label>
                             <div class="col-sm-10">
-                                <select name="category_select" id="category_select" class="form-select">
-                                    <option>Default select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select name="category_id" id="category_id" class="form-select">
+                                    @foreach($categories as $category )
+                                    <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Add Category</button>
+                                <button type="submit" class="btn btn-primary">Add Subcategory</button>
                             </div>
                         </div>
                     </form>
