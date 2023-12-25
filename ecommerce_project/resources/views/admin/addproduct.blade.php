@@ -7,10 +7,21 @@
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">Add new product</h5>
+
                     <small class="text-muted float-end">input information</small>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{route('storeproduct')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Name</label>
                             <div class="col-sm-10">
@@ -34,14 +45,14 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Short Description</label>
                             <div class="col-sm-10">
-                                <textarea type="text"  cols="30" rows="10" name="product_sdescription" id="product_sdescription" class="form-control"  placeholder="Enter short description"></textarea>
+                                <textarea type="text"  cols="30" rows="10" name="product_short_des" id="product_short_des" class="form-control"  placeholder="Enter short description"></textarea>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Long Description</label>
                             <div class="col-sm-10">
-                                <textarea type="text"  cols="30" rows="10" name="product_ldescription" id="product_ldescription" class="form-control"  placeholder="Enter long description"></textarea>
+                                <textarea type="text"  cols="30" rows="10" name="product_long_des" id="product_long_des" class="form-control"  placeholder="Enter long description"></textarea>
                             </div>
                         </div>
 
@@ -49,22 +60,20 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Select Category</label>
                             <div class="col-sm-10">
-                                <select name="category_select" id="category_select" class="form-select">
-                                    <option>Default select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select name="product_category_id" id="product_category_id" class="form-select">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Select Sub Category</label>
                             <div class="col-sm-10">
-                                <select name="subcategory_select" id="subcategory_select" class="form-select">
-                                    <option>Default select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select name="product_subcategory_id" id="product_subcategory_id" class="form-select">
+                                    @foreach($subcategories as $subcategory)
+                                        <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -73,7 +82,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Upload Product Image</label>
                             <div class="col-sm-10">
-                                <input  name="image" class="form-control" type="file" id="formFile" />
+                                <input  name="product_image" class="form-control" type="file" id="formFile" />
                             </div>
                         </div>
 
