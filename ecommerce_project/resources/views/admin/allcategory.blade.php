@@ -22,16 +22,18 @@
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
+                @foreach($categories as $category)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$category->id}}</td>
+                    <td>{{$category->category_name}}</td>
+                    <td>{{$category->subcategory_count}}</td>
+                    <td>{{$category->slug}}</td>
                     <td>
-                        <a  class="btn  btn-primary" href="">Edit</a>
-                        <a  class="btn btn-danger" href="">Delete</a>
+                        <a  class="btn  btn-primary" href="{{route('editcategory',$category->id)}}">Edit</a>
+                        <a  class="btn btn-danger" href="{{route('deletecategory',$category->id)}}">Delete</a>
                     </td>
                 </tr>
+                @endforeach
 
                 </tbody>
             </table>
