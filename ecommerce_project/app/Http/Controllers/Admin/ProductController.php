@@ -83,5 +83,29 @@ class ProductController extends Controller
          ]);
          return redirect()->route('allproduct')->with('message','Product image updated successfully');
      }
+     public function editProduct($id){
+        $product_info=Product::findOrFail($id);
+        return view('admin.editproduct',compact('product_info'));
+     }
+     public function updateProduct(Request $request){
+         $product_id=$request->product_id;
+         $request->validate([
+             'product_name'=>'required',
+             'product_price'=>'required',
+             'product_qty'=>'required',
+             'product_short_des'=>'required',
+             'product_long_des'=>'required',
+         ]);
+
+         Product::findOrFail($product_id)->update([
+             'product_name'=>$request->product_name,
+             'product_short_des'=>$request->product_short_des,
+             'product_long_des'=>$request->product_long_des,
+             'price'=>$request->product_price,
+             'product_qty'=>$request->product_qty,
+             'slug'=>strtolower(str_replace(' ','-',$request->product_name)),
+         ]);
+         return redirect()->route('allproduct')->with('message','Product updated successfully');
+     }
 
 }
