@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        return view('admin.allproduct');
+        $products = Product::latest()->get();
+        return view('admin.allproduct',compact('products'));
     }
     public function addProduct(){
         $categories=Category::latest()->get();
@@ -60,5 +61,27 @@ class ProductController extends Controller
         Subcategory::where('id',$subcategory_id)->increment('product_count',1);
         return redirect()->route('allproduct')->with('message','Product added successfully');
     }
+
+     public function editProductImg($id){
+        $product_info=Product::findOrFail($id);
+        return view('admin.editproductimg',compact('product_info'));
+
+     }
+     public function updateProductImg(Request $request){
+         $request->validate([
+             'product_image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+         ]);
+
+         $image=$request->file('product_image');
+         $image_name=hexdec(uniqid()).".".$image->getClientOriginalExtension();
+         $request->product_image->move(public_path('upload'),$image_name);
+         $image_url='upload/'.$image_name;
+
+         $product_id=$request->product_id;
+         Product::findOrFail($product_id)->update([
+             'product_image'=>$image_url
+         ]);
+         return redirect()->route('allproduct')->with('message','Product image updated successfully');
+     }
 
 }

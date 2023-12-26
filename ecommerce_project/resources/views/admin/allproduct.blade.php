@@ -22,16 +22,21 @@
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                    @foreach($products as $product)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$product->id}}</td>
+                        <td>{{$product->product_name}}</td>
+                        <td><img style="width:100px;" src="{{asset($product->product_image)}}" alt="{{$product->product_name}}"/>
+                            <br/><br/>
+                            <a href="{{route('editproductimg',$product->id)}}" class="btn-sm btn-primary">update image</a>
+                        </td>
+                        <td>{{$product->price}}</td>
                         <td>
                             <a  class="btn  btn-primary" href="">Edit</a>
                             <a  class="btn btn-danger" href="">Delete</a>
                         </td>
                     </tr>
+                    @endforeach
 
                     </tbody>
                 </table>
