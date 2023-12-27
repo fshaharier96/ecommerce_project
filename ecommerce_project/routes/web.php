@@ -14,14 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front_template.layouts.template');
-});
+//Route::get('/', function () {
+//
+//});
 
 //Route::get('/dashboard', function () {
 //
 //    return view('dashboard');
 //})->middleware(['auth','role:user'])->name('dashboard');
+
+Route::controller(\App\Http\Controllers\HomeController::class)->group(function(){
+    Route::get('/','index')->name('home');
+});
 
 Route::middleware(['auth','role:user'])->group(function(){
     Route::controller(\App\Http\Controllers\User\DashboardController::class)->group(function(){
