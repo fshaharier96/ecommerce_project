@@ -1,7 +1,7 @@
 @extends('front_template.layouts.template')
 @section('title','home page')
 @section('content')
-  <div>
+  <div class="container">
     <!-- fashion section start -->
     <div class="fashion_section">
         <div id="main_slider" class="carousel slide" data-ride="carousel">

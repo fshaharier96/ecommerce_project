@@ -27,6 +27,17 @@ Route::controller(\App\Http\Controllers\HomeController::class)->group(function()
     Route::get('/','index')->name('home');
 });
 
+Route::controller(\App\Http\Controllers\ClientController::class)->group(function(){
+    Route::get('/category','category')->name('category');
+    Route::get('/single-product','singleProduct')->name('singleproduct');
+    Route::get('/add-to-cart','addToCart')->name('addtocart');
+    Route::get('/checkout','checkout')->name('checkout');
+    Route::get('/user-profile','userProfile')->name('userprofile');
+    Route::get('/new-release','newRelease')->name('newrelease');
+    Route::get('/todays-deal','todaysDeal')->name('todaysdeal');
+    Route::get('/customer-service','customerService')->name('customerservice');
+});
+
 Route::middleware(['auth','role:user'])->group(function(){
     Route::controller(\App\Http\Controllers\User\DashboardController::class)->group(function(){
         Route::get('/dashboard','index')->name('userdashboard');
