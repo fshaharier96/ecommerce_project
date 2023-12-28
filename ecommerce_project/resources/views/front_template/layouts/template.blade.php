@@ -79,9 +79,12 @@
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a href="index.html">Home</a>
-                    <a href="fashion.html">Fashion</a>
-                    <a href="electronic.html">Electronic</a>
-                    <a href="jewellery.html">Jewellery</a>
+                    @php
+                    $categories=App\Models\Category::latest()->get();
+                    @endphp
+                    @foreach($categories as $category)
+                        <a href="fashion.html">{{$category->category_name}}</a>
+                    @endforeach
                 </div>
                 <span class="toggle_icon" onclick="openNav()"><img src="{{asset('home/images/toggle-icon.png')}}"></span>
                 <div class="dropdown">
@@ -134,55 +137,59 @@
     </div>
     <!-- header section end -->
     <!-- banner section start -->
-    <div class="banner_section layout_padding">
-        <div class="container">
-            <div id="my_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+{{--    <div class="banner_section layout_padding">--}}
+{{--        <div class="container">--}}
+{{--            <div id="my_slider" class="carousel slide" data-ride="carousel">--}}
+{{--                <div class="carousel-inner">--}}
+{{--                    <div class="carousel-item active">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-sm-12">--}}
+{{--                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>--}}
+{{--                                <div class="buynow_bt"><a href="#">Buy Now</a></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-sm-12">--}}
+{{--                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>--}}
+{{--                                <div class="buynow_bt"><a href="#">Buy Now</a></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-sm-12">--}}
+{{--                                <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>--}}
+{{--                                <div class="buynow_bt"><a href="#">Buy Now</a></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">--}}
+{{--                    <i class="fa fa-angle-left"></i>--}}
+{{--                </a>--}}
+{{--                <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">--}}
+{{--                    <i class="fa fa-angle-right"></i>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- banner section end -->
 </div>
 <!-- banner bg main end -->
-
+<div class="container py-5" style="margin-top:150px;">
 @yield('content')
+</div>
 
 
 <!-- footer section start -->
 <div class="footer_section layout_padding">
     <div class="container">
-        <div class="footer_logo"><a href="index.html"><img src="{{asset('home/images/footer-logo.png')}}"></a></div>
+        <div class="footer_logo"><a style="font-size:30px;font-weight: bold; color:white;" href="index.html">
+{{--                <img src="{{asset('home/images/footer-logo.png')}}">--}}
+                FINCOM
+            </a></div>
         <div class="input_bt">
             <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
             <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
