@@ -13,8 +13,11 @@ class ClientController extends Controller
        $cat_products=Product::where('product_category_id',$id)->latest()->get();
        return view('front_template.category',compact('cat_products','category'));
    }
-    public function singleProduct(){
-        return view('front_template.product');
+    public function singleProduct($id){
+        $product=Product::findOrFail($id);
+        $subcategory=Product::where('id',$id)->value('product_subcategory_id');
+        $related_products=Product::where('product_subcategory_id',$subcategory)->latest()->get();
+        return view('front_template.product',compact('product','related_products'));
     }
     public function addToCart(){
         return view('front_template.addtocart');
