@@ -63,7 +63,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="logo"><a style="font-size:30px;font-weight: bold" href="index.html">
+                    <div class="logo"><a style="font-size:30px;font-weight: bold" href="{{route('home')}}">
 {{--                            <img src="{{asset('home/images/logo.png')}}">--}}
                             FINCOM
                         </a></div>
@@ -78,7 +78,7 @@
             <div class="containt_main">
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="index.html">Home</a>
+                    <a href="{{route('home')}}">Home</a>
                     @php
                     $categories=App\Models\Category::latest()->get();
                     @endphp
@@ -91,9 +91,9 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        @foreach($categories as $category)
+                            <a class="dropdown-item" href="#">{{$category->category_name}}</a>
+                        @endforeach
                     </div>
                 </div>
                 <div class="main">
