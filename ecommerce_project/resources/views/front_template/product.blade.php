@@ -26,8 +26,17 @@
                        </ul>
                    </div>
                    <div class="btn_main mt-2 ">
-                      <div class="btn btn-warning">
-                          <a href="">Add to cart</a>
+                      <div class="">
+                         <form action="{{route('addproducttocart',$product->id)}}" method="post">
+                             @csrf
+                             <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
+                             <div class="form-group">
+                                 <label for="product_id">Order Quantity</label>
+                                 <input class ="form-control" type="number"  min='1' max="{{$product->product_qty}}"  placeholder="1" name="product_id" id="product_id" />
+                             </div>
+
+                             <input type="submit" class="btn btn-warning" value="Add to cart"/>
+                         </form>
                       </div>
                    </div>
 
@@ -50,8 +59,16 @@
                                                    <h4 class="shirt_text">{{$product->product_name}}</h4>
                                                    <p class="price_text">Price  <span style="color: #262626;">{{$product->price}} Tk</span></p>
                                                    <div class=""><img style="height:300px" src="{{asset($product->product_image)}}"></div>
-                                                   <div class="btn_main">
-                                                       <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                   <div class="btn_main mt-3">
+                                                       <div class="buy_bt">
+                                                           <div class="">
+                                                               <form action="{{route('addproducttocart',$product->id)}}" method="post">
+                                                                   @csrf
+                                                                   <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
+                                                                   <input type="submit" class="btn btn-warning" value="Buy now"/>
+                                                               </form>
+                                                           </div>
+                                                       </div>
                                                        <div class="seemore_bt"><a href="{{route('singleproduct',[$product->id,$product->slug])}}">See More</a></div>
                                                    </div>
                                                </div>

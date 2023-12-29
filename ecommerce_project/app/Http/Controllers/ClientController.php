@@ -22,11 +22,22 @@ class ClientController extends Controller
     public function addToCart(){
         return view('front_template.addtocart');
     }
+
+    public function addProductToCart(){
+
+
+    }
     public function checkout(){
         return view('front_template.checkout');
     }
     public function userProfile(){
         return view('front_template.userprofile');
+    }
+    public function pendingOrders(){
+        return view('front_template.pendingorders');
+    }
+    public function history(){
+        return view('front_template.history');
     }
     public function newRelease(){
         return view('front_template.newrelease');

@@ -42,8 +42,13 @@ Route::middleware((['auth','role:user']))->group(function(){
     Route::controller(\App\Http\Controllers\ClientController::class)->group(function(){
 
         Route::get('/add-to-cart','addToCart')->name('addtocart');
+        Route::post('/add-product-to-cart/{id}','addProductToCart')->name('addproducttocart');
         Route::get('/checkout','checkout')->name('checkout');
         Route::get('/user-profile','userProfile')->name('userprofile');
+        Route::get('/user-profile/pending-orders','pendingOrders')->name('userpendingorders');
+        Route::get('/user-profile/history','history')->name('history');
+        Route::get('/user-profile','userProfile')->name('userprofile');
+
         Route::get('/todays-deal','todaysDeal')->name('todaysdeal');
         Route::get('/customer-service','customerService')->name('customerservice');
     });
