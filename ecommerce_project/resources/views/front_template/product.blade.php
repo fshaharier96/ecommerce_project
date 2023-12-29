@@ -27,7 +27,7 @@
                    </div>
                    <div class="btn_main mt-2 ">
                       <div class="">
-                         <form action="{{route('addproducttocart',$product->id)}}" method="post">
+                         <form action="{{route('addproducttocart')}}" method="post">
                              @csrf
                              <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
                              <div class="form-group">
@@ -62,7 +62,7 @@
                                                    <div class="btn_main mt-3">
                                                        <div class="buy_bt">
                                                            <div class="">
-                                                               <form action="{{route('addproducttocart',$product->id)}}" method="post">
+                                                               <form action="{{route('addproducttocart')}}" method="post">
                                                                    @csrf
                                                                    <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
                                                                    <input type="submit" class="btn btn-warning" value="Buy now"/>
