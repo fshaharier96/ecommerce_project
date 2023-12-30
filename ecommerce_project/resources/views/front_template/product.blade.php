@@ -30,9 +30,10 @@
                          <form action="{{route('addproducttocart')}}" method="post">
                              @csrf
                              <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
+                             <input  hidden type="text" value="{{$product->price}}" name="product_price"/>
                              <div class="form-group">
                                  <label for="product_id">Order Quantity</label>
-                                 <input class ="form-control" type="number"  min='1' max="{{$product->product_qty}}"  placeholder="1" name="product_id" id="product_id" />
+                                 <input class ="form-control" type="number"  min='1' max="{{$product->product_qty}}"  placeholder="1" name="quantity" id="quantity" />
                              </div>
 
                              <input type="submit" class="btn btn-warning" value="Add to cart"/>

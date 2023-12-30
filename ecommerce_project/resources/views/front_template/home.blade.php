@@ -23,6 +23,8 @@
                                                     <form action="{{route('addproducttocart')}}" method="post">
                                                         @csrf
                                                         <input  hidden type="text" value="{{$product->id}}" name="product_id"/>
+                                                        <input  hidden type="text" value="{{$product->price}}" name="product_price"/>
+                                                        <input  hidden type="text" value="1" name="quantity"/>
                                                         <input type="submit" class="btn btn-warning" value="Buy now"/>
                                                     </form>
                                                 </div>
