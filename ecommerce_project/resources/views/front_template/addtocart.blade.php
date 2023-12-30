@@ -22,6 +22,9 @@
                           </tr>
                          </thead>
                          <tbody>
+                         @php
+                         $total=0;
+                         @endphp
                          @foreach($cart_products as $products)
                              @php
                              $product_name=App\Models\Product::where('id',$products->product_id)->value('product_name');
@@ -32,9 +35,19 @@
                              <td>{{$product_name}}</td>
                              <td>{{$products->quantity}}</td>
                              <td>{{$products->price}}</td>
-                             <td><a class="btn btn-warning" href="">Remove</a></td>
+                             <td><a class="btn btn-warning" href="{{route('removecart',$products->id)}}">Remove</a></td>
                          </tr>
+                             @php
+                             $total=$total+$products->price;
+                             @endphp
                          @endforeach
+                         <tr>
+                             <td></td>
+                             <td></td>
+                             <td></td>
+                             <td class="fw-bolder">Total price :</td>
+                             <td>{{$total}}</td>
+                         </tr>
                          </tbody>
                      </table>
                </div>

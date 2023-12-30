@@ -37,6 +37,11 @@ class ClientController extends Controller
        ]);
        return redirect()->route('addtocart')->with('message','Product has been added to cart');
     }
+    public function removeCart($id){
+       Cart::findOrFail($id)->delete();
+//
+       return redirect()->route('addtocart')->with('message','Cart has been deleted successfully');
+    }
     public function checkout(){
         return view('front_template.checkout');
     }
