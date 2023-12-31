@@ -53,7 +53,7 @@
                </div>
            </div>
        </div>
-       <form action="" method="post" class="mr-2">
+       <form action="{{route('placeorder')}}" method="post" class="mr-2">
            @csrf
           <input type="submit" value="Place Order" class="btn btn-info"/>
        </form>

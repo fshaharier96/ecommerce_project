@@ -47,6 +47,7 @@ Route::middleware((['auth','role:user']))->group(function(){
         Route::get('/shipping-address','getShippingAddress')->name('shippingaddress');
         Route::post('/add-shipping-address','addShippingAddress')->name('addshippingaddress');
         Route::get('/checkout','checkout')->name('checkout');
+        Route::post('/place-order','placeOrder')->name('placeorder');
         Route::get('/user-profile','userProfile')->name('userprofile');
         Route::get('/user-profile/pending-orders','pendingOrders')->name('userpendingorders');
         Route::get('/user-profile/history','history')->name('history');
