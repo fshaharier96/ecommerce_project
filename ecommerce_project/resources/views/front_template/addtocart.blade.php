@@ -44,9 +44,13 @@
                          <tr>
                              <td></td>
                              <td></td>
-                             <td></td>
                              <td class="fw-bolder">Total price :</td>
                              <td>{{$total}}</td>
+                             @if($total<=0)
+                                <td><a  class="btn btn-info" href="" disabled>Checkout now</a></td>
+                             @else
+                                 <td><a class="btn btn-info" href="{{route('shippingaddress')}}">Checkout now</a></td>
+                             @endif
                          </tr>
                          </tbody>
                      </table>

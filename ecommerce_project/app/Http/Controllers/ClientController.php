@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ShippingInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,8 +43,33 @@ class ClientController extends Controller
 //
        return redirect()->route('addtocart')->with('message','Cart has been deleted successfully');
     }
+    public function getShippingAddress(){
+
+      return view('front_template.shippingaddress');
+    }
+    public function addShippingAddress(Request $request){
+        $request->validate([
+            'phone'=>'required',
+            'city'=>'required',
+            'street_address'=>'required',
+            'postal_code'=>'required'
+        ]);
+        ShippingInfo::insert([
+            'user_id'=>Auth::id(),
+            'phone'=>$request->phone,
+            'city'=>$request->city,
+            'shipping_address'=>$request->street_address,
+            'postal_code'=>$request->postal_code
+
+        ]);
+
+        return redirect()->route('checkout');
+    }
     public function checkout(){
-        return view('front_template.checkout');
+        $user_id=Auth::id();
+        $cart_items=Cart::where('user_id',$user_id)->get();
+        $shipping_address=ShippingInfo::where('user_id',$user_id)->first();
+        return view('front_template.checkout',compact('cart_items','shipping_address'));
     }
     public function userProfile(){
         return view('front_template.userprofile');
