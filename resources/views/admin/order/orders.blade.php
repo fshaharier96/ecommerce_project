@@ -47,6 +47,7 @@
                                     <th>Delivery Status</th>
                                     <th>Image</th>
                                     <th>Delivered</th>
+                                    <th>Print PDF</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,6 +82,10 @@
                                              <p class="text-success">Delivered</p>
 
                                         @endif
+                                    </td>
+
+                                    <td>
+                                      <a href="{{url('/order_pdf',$order->id)}}" class="btn btn-info">PDF</a>
                                     </td>
 
                                    

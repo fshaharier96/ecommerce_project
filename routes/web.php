@@ -39,6 +39,7 @@ Route::post('/update_category/{id}',[AdminController::class,'update_category']);
 Route::get('/delete_category/{id}',[AdminController::class,'delete_category']);
 Route::get('/orders',[AdminController::class,'orders']);
 Route::get('/delivered/{id}',[AdminController::class,'delivered']);
+Route::get('/order_pdf/{id}',[AdminController::class,'order_pdf']);
 
 
 Route::get('/view_product',[ProductController::class,'view_product']);

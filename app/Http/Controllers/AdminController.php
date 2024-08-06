@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -55,4 +60,11 @@ public function delete_category($id){
     $order->save();
     return redirect()->back();
  }
+  
+    public function order_pdf($id){
+        $order=Order::find($id);
+       $pdf=FacadePdf::loadView("admin.pdf",compact('order'));
+      
+       return $pdf->download('order_details.pdf');
+    }
 }
