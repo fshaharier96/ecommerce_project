@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Order;
+use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 // use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 // use Barryvdh\DomPDF\PDF;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -53,12 +55,15 @@ public function delete_category($id){
     return view('admin.order.orders',compact('orders'));
  }
 
- public function delivered($id){
+ public function delivered(){
+    if($_GET){
+        $id=$_GET['order_id'];
+    }
     $order=Order::find($id);
     $order->delivery_status="Delivered";
     $order->payment_status="Paid";
     $order->save();
-    return redirect()->back();
+    echo "success";
  }
   
     public function order_pdf($id){
@@ -66,5 +71,34 @@ public function delete_category($id){
        $pdf=FacadePdf::loadView("admin.pdf",compact('order'));
       
        return $pdf->download('order_details.pdf');
+    }
+
+    public function send_email($id){
+        $order=Order::find($id);
+        return view('admin.email_info',compact('order'));
+    }
+
+    public function send_user_email(Request $request,$id){
+        $order=Order::find($id);
+        $details=[
+            'greeting'=>$request->greeting,
+            'firstline'=>$request->firstline,
+            'body'=>$request->body,
+            'button'=>$request->button,
+            'url'=>$request->url,
+            'lastline'=>$request->lastline,
+        ];
+        Notification::send($order,new SendEmailNotification($details));
+        return redirect()->back();
+    }
+
+    public function order_search(){
+        if($_GET){
+         $search_text=$_GET['search_text'];
+         $orders=Order::where('name','LIKE',"%$search_text%")->get();
+         
+         $html= view('admin.order.order_search',compact('orders'))->render();
+         return response()->json(['html' => $html]);
+        }
     }
 }

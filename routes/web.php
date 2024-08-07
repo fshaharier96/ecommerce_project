@@ -38,8 +38,11 @@ Route::get('/edit_category/{id}',[AdminController::class,'edit_category']);
 Route::post('/update_category/{id}',[AdminController::class,'update_category']);
 Route::get('/delete_category/{id}',[AdminController::class,'delete_category']);
 Route::get('/orders',[AdminController::class,'orders']);
-Route::get('/delivered/{id}',[AdminController::class,'delivered']);
+Route::get('/delivered',[AdminController::class,'delivered'])->name('orders.delivered');
 Route::get('/order_pdf/{id}',[AdminController::class,'order_pdf']);
+Route::get('/send_email/{id}',[AdminController::class,'send_email']);
+Route::post('/send_user_email/{id}',[AdminController::class,'send_user_email']);
+Route::get('/order_search',[AdminController::class,'order_search'])->name('order_search');
 
 
 Route::get('/view_product',[ProductController::class,'view_product']);
